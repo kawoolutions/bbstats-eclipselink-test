@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templating/blankTemplate.xhtml">
+    
+    <ui:define name="metadata">
+        <f:metadata>
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="title">
+        <h:outputText value="BBStats Index" />
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <h:form id="index-form">
+            
+            <div class="ui-g-3">
+            </div>
+            <div class="ui-g-6 text-center pb-30px font-size-30px">
+                <h1 style="display: inline;">Basketball Stats Demo</h1>
+            </div>
+            <div class="ui-g-3">
+            </div>
+            
+            <div class="clear-both">
+            </div>
+            
+            <div class="ui-g-3">
+            </div>
+            <div class="ui-g-3 text-center" style="border: 2px dashed #BBBBBB; font-size: 20px;">
+                <p:link href="/bbstats/home.xhtml"
+                        target="_blank"
+                        styleClass="display-inline-block pb-25px">
+                    <h:graphicImage library="bbstats"
+                                    name="images/jsf-logo.png"
+                                    width="80%"
+                                    height="80%" />
+                    <h:graphicImage library="bbstats"
+                                    name="images/primefaces-logo.png"
+                                    width="88%"
+                                    height="88%" />
+                    <br />JSF / PrimeFaces Version
+                </p:link>
+            </div>
+            <div class="ui-g-3 text-center ml-5px" style="border: 2px dashed #BBBBBB; font-size: 20px;">
+                <p:link href="#{applicationStore.devStage ? 'http://localhost:3000/index.html' : 'http://bbstats.s3-website.eu-central-1.amazonaws.com/'}"
+                        target="_blank"
+                        styleClass="display-inline-block pb-25px">
+                    <h:graphicImage library="bbstats"
+                                    name="images/reactjs-logo.png"
+                                    width="50%"
+                                    height="50%"
+                                    styleClass="mt-20px" />
+                    <br />
+                    <h:graphicImage library="bbstats"
+                                    name="images/primereact-logo.png"
+                                    width="50%"
+                                    height="50%" />
+                    <br />React JS / PrimeReact Version
+                </p:link>
+            </div>
+            <div class="ui-g-3">
+            </div>
+                
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templating/mainTemplate.xhtml">
+    
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="season" value="#{seasonSelector.startYear}" />
+            <f:viewAction action="#{seasonSelector.loadSelectedSeason()}" />
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="title">
+        <h:outputText value="BBStats Dashboard" />
+    </ui:define>
+
+    <!--ui:define name="navigation">
+        <ui:include src="/WEB-INF/includes/navigationPanel.xhtml" />
+    </ui:define-->
+
+    <ui:define name="content">
+        
+        <ui:include src="/WEB-INF/includes/seasonSelector.xhtml" />
+        
+        <h:form id="home-form">
+            
+            <p:panelGrid layout="grid"
+                         columns="2">
+
+                <p:panel header="#{text['entity.team.plural.header']}"
+                         styleClass="text-center text-nowrap">
+                    <h:link outcome="/public/teams/teamList.xhtml"
+                            style="">
+                        <h:graphicImage library="bbstats"
+                                        name="images/team-name.png"
+                                        width="160"
+                                        height="128"
+                                        style="" /><br />
+                        <h:outputText value="#{text['entity.team.plural.label']} #{seasonSelector.getSeasonLabel()}" />
+                        <f:param name="season" value="#{seasonSelector.startYear}" />
+                    </h:link>
+                </p:panel>
+            
+                <p:panel header="#{text['entity.competition.plural.header']}"
+                         styleClass="text-center text-nowrap">
+                    <h:link outcome="/public/competitions/competitionList.xhtml">
+                        <h:graphicImage library="bbstats"
+                                        name="images/league.png"
+                                        width="128"
+                                        height="128" /><br />
+                        <h:outputText value="#{text['entity.competition.plural.label']} #{seasonSelector.getSeasonLabel()}" />
+                        <f:param name="season" value="#{seasonSelector.startYear}" />
+                    </h:link>
+                </p:panel>
+
+                <p:panel header="#{text['entity.player.plural.header']}"
+                         styleClass="text-center text-nowrap">
+                    <h:link outcome="/public/players/playerList.xhtml">
+                        <h:graphicImage library="bbstats"
+                                        name="images/player.png"
+                                        width="128"
+                                        height="128" /><br />
+                        <h:outputText value="#{text['entity.player.plural.label']} #{seasonSelector.getSeasonLabel()}" />
+                        <f:param name="season" value="#{seasonSelector.startYear}" />
+                    </h:link>
+                </p:panel>
+
+                <p:panel header="#{text['entity.arena.plural.header']}"
+                         styleClass="text-center text-nowrap">
+                    <h:link outcome="/public/arenas/arenaList.xhtml">
+                        <h:graphicImage library="bbstats"
+                                        name="images/arena.png"
+                                        width="128"
+                                        height="128" /><br />
+                        <h:outputText value="#{text['entity.arena.plural.label']}" />
+                    </h:link>
+                </p:panel>
+
+            </p:panelGrid>
+
+        </h:form>
+
+        <p:messages id="msgs" />
+
+    </ui:define>
+
+</ui:composition>
