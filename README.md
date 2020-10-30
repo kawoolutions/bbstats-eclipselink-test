@@ -1,1 +1,1 @@
-Just another basketball stats demo web app using JSF + PrimeFaces using Java EE.
+Just another basketball stats demo web app using Java EE (JPA, JSF, REST) + PrimeFaces.
