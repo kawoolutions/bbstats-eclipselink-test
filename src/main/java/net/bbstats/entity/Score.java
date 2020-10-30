@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -33,7 +32,6 @@ public class Score implements Serializable
     private Integer finalScore;
 
     @OneToMany(mappedBy = "score")
-    @OrderBy("starter DESC, jerseyNbr")
     private List<PlayerStat> playerStats;
 
     public Score()
