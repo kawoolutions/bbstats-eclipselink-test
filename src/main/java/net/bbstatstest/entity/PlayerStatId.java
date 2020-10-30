@@ -7,9 +7,13 @@ public class PlayerStatId implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    private ScoreId score;
+    private Integer gameId;
 
-    private TeamMemberId teamMember;
+    private Boolean home;
+
+    private Integer playerId;
+
+    private Integer rosterId;
 
     public PlayerStatId()
     {
@@ -17,62 +21,42 @@ public class PlayerStatId implements Serializable
 
     public Integer getGameId()
     {
-        return score.getGameId();
+        return gameId;
     }
 
     public void setGameId(Integer gameId)
     {
-        score.setGameId(gameId);
+        this.gameId = gameId;
     }
 
     public Boolean getHome()
     {
-        return score.getHome();
+        return home;
     }
 
     public void setHome(Boolean home)
     {
-        score.setHome(home);
+        this.home = home;
     }
 
     public Integer getPlayerId()
     {
-        return teamMember.getPlayerId();
+        return playerId;
     }
 
     public void setPlayerId(Integer playerId)
     {
-        teamMember.setPlayerId(playerId);
+        this.playerId = playerId;
     }
 
     public Integer getRosterId()
     {
-        return teamMember.getRosterId();
+        return rosterId;
     }
 
     public void setRosterId(Integer rosterId)
     {
-        teamMember.setRosterId(rosterId);
-    }
-
-    public ScoreId getScoreId()
-    {
-        return score;
-    }
-
-    public void setScoreId(ScoreId scoreId)
-    {
-        this.score = scoreId;
-    }
-
-    public TeamMemberId getTeamMemberId()
-    {
-        return teamMember;
-    }
-
-    public void setTeamMemberId(TeamMemberId teamMemberId)
-    {
-        this.teamMember = teamMemberId;
+        this.rosterId = rosterId;
     }
 
     @Override
@@ -90,18 +74,18 @@ public class PlayerStatId implements Serializable
 
         PlayerStatId other = ( PlayerStatId ) obj;
 
-        return Objects.equals(this.score, other.score) && Objects.equals(this.teamMember, other.teamMember);
+        return Objects.equals(this.gameId, other.gameId) && Objects.equals(this.home, other.home) && Objects.equals(this.playerId, other.playerId) && Objects.equals(this.rosterId, other.rosterId);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(this.score, this.teamMember);
+        return Objects.hash(this.gameId, this.home, this.playerId, this.rosterId);
     }
 
     @Override
     public String toString()
     {
-        return "PlayerStatId [score=" + Objects.toString(this.score) + ", teamMember=" + Objects.toString(this.teamMember) + "]";
+        return "PlayerStatId [gameId=" + Objects.toString(this.gameId) + ", home=" + Objects.toString(this.home) + ", playerId=" + Objects.toString(this.playerId) + ", rosterId=" + Objects.toString(this.rosterId) + "]";
     }
 }
