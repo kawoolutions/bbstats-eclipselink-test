@@ -18,7 +18,6 @@ public abstract class StringDateUtils
 
     public static String localDateTimeToIsoString( LocalDateTime dateTime )
     {
-//        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern( ISO_PATTERN );
         
         return localDateTimeToFormattedString( dateTime, formatter );
