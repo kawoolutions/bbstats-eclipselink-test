@@ -1,4 +1,4 @@
-package net.bbstats.util;
+package net.bbstatstest.util;
 
 import java.beans.Introspector;
 import java.io.UnsupportedEncodingException;

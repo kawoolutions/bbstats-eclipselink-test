@@ -1,4 +1,4 @@
-package net.bbstats.util;
+package net.bbstatstest.util;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package net.bbstats.application;
+package net.bbstatstest.application;
 
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;

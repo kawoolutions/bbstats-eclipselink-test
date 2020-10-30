@@ -1,4 +1,4 @@
-package net.bbstats.entity;
+package net.bbstatstest.entity;
 
 import java.io.Serializable;
 import java.util.Objects;

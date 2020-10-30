@@ -1,4 +1,4 @@
-package net.bbstats.application;
+package net.bbstatstest.application;
 
 public abstract class ProjectGlobals
 {

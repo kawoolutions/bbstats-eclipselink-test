@@ -1,4 +1,4 @@
-package net.bbstats.util;
+package net.bbstatstest.util;
 
 import java.util.Map;
 import java.util.Map.Entry;
