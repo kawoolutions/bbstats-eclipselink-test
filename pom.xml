@@ -12,7 +12,7 @@
     </parent-->
     
     <groupId>net.bbstats</groupId>
-    <artifactId>bbstats-test</artifactId>
+    <artifactId>bbstats-eclipselink-test</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
     <name>Basketball Stats Test</name>
