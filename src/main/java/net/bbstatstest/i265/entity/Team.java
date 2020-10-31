@@ -21,7 +21,7 @@ public class Team implements Serializable
 
     @MapsId("clubId")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "club_id", insertable = false, updatable = false)
+    @JoinColumn(name = "club_id")
     private Club club;
 
     public Team()

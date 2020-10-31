@@ -6,9 +6,6 @@
     
     <persistence-unit name="BBStatsPU" transaction-type="JTA">
     
-        <!-- Hibernate -->
-        <!--provider>org.hibernate.jpa.HibernatePersistenceProvider</provider-->
-        
         <!-- EclipseLink -->
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         
@@ -17,14 +14,6 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         
         <properties>
-
-            <!-- Hibernate properties -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
-            <property name="hibernate.dialect.storage_engine" value="innodb" />
-            <property name="hibernate.globally_quoted_identifiers" value="true" />
-            
-            <!--property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" /-->
 
             <!-- EclipseLink properties -->
             <!--property name="eclipselink.weaving" value="static" /-->

@@ -10,7 +10,7 @@ public class TeamPk implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "club_id")
+    @Column(name = "club_id", insertable = false, updatable = false)
     private Integer clubId;
 
     @Column(name = "team_type_code")
