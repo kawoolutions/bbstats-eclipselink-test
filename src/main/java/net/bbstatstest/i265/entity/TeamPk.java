@@ -1,6 +1,7 @@
 package net.bbstatstest.i265.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,7 +11,7 @@ public class TeamPk implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "club_id", insertable = false, updatable = false)
+    @Column(name = "club_id")
     private Integer clubId;
 
     @Column(name = "team_type_code")
@@ -54,53 +55,32 @@ public class TeamPk implements Serializable
     }
 
     @Override
-    public int hashCode()
+    public boolean equals(Object obj)
     {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ( (clubId == null) ? 0 : clubId.hashCode() );
-        result = prime * result + ( (ordinalNbr == null) ? 0 : ordinalNbr.hashCode() );
-        result = prime * result + ( (teamTypeCode == null) ? 0 : teamTypeCode.hashCode() );
-        return result;
+        if ( obj == null )
+        {
+            return false;
+        }
+
+        if ( getClass() != obj.getClass() )
+        {
+            return false;
+        }
+
+        TeamPk other = ( TeamPk ) obj;
+
+        return Objects.equals(this.clubId, other.clubId) && Objects.equals(this.teamTypeCode, other.teamTypeCode) && Objects.equals(this.ordinalNbr, other.ordinalNbr);
     }
 
     @Override
-    public boolean equals(Object obj)
+    public int hashCode()
     {
-        if ( this == obj )
-            return true;
-        if ( obj == null )
-            return false;
-        if ( getClass() != obj.getClass() )
-            return false;
-        TeamPk other = ( TeamPk ) obj;
-        if ( clubId == null )
-        {
-            if ( other.clubId != null )
-                return false;
-        }
-        else if ( !clubId.equals( other.clubId ) )
-            return false;
-        if ( ordinalNbr == null )
-        {
-            if ( other.ordinalNbr != null )
-                return false;
-        }
-        else if ( !ordinalNbr.equals( other.ordinalNbr ) )
-            return false;
-        if ( teamTypeCode == null )
-        {
-            if ( other.teamTypeCode != null )
-                return false;
-        }
-        else if ( !teamTypeCode.equals( other.teamTypeCode ) )
-            return false;
-        return true;
+        return Objects.hash(this.clubId, this.teamTypeCode, this.ordinalNbr);
     }
 
     @Override
     public String toString()
     {
-        return "TeamPk [clubId=" + clubId + ", teamTypeCode=" + teamTypeCode + ", ordinalNbr=" + ordinalNbr + "]";
+        return "TeamPk [clubId=" + Objects.toString(this.clubId) + ", teamTypeCode=" + Objects.toString(this.teamTypeCode) + ", ordinalNbr=" + Objects.toString(this.ordinalNbr) + "]";
     }
 }

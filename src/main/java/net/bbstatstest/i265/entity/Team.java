@@ -1,6 +1,7 @@
 package net.bbstatstest.i265.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Team implements Serializable
 
     @MapsId("clubId")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "club_id")
+    @JoinColumn(name = "club_id", insertable = false, updatable = false)
     private Club club;
 
     public Team()
@@ -79,37 +80,32 @@ public class Team implements Serializable
     }
 
     @Override
-    public int hashCode()
+    public boolean equals(Object obj)
     {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ( (embeddedId == null) ? 0 : embeddedId.hashCode() );
-        return result;
+        if ( obj == null )
+        {
+            return false;
+        }
+
+        if ( getClass() != obj.getClass() )
+        {
+            return false;
+        }
+
+        Team other = ( Team ) obj;
+
+        return Objects.equals(this.embeddedId, other.embeddedId);
     }
 
     @Override
-    public boolean equals(Object obj)
+    public int hashCode()
     {
-        if ( this == obj )
-            return true;
-        if ( obj == null )
-            return false;
-        if ( getClass() != obj.getClass() )
-            return false;
-        Team other = ( Team ) obj;
-        if ( embeddedId == null )
-        {
-            if ( other.embeddedId != null )
-                return false;
-        }
-        else if ( !embeddedId.equals( other.embeddedId ) )
-            return false;
-        return true;
+        return Objects.hash(this.embeddedId);
     }
 
     @Override
     public String toString()
     {
-        return "Team [embeddedId=" + embeddedId + "]";
+        return "Team [embeddedId=" + Objects.toString(this.embeddedId) + "]";
     }
 }
