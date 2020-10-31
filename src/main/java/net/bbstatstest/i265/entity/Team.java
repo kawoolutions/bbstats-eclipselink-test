@@ -12,7 +12,7 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "\"Teams\"")
+@Table(name = "Teams")
 public class Team implements Serializable
 {
     private static final long serialVersionUID = 1L;
