@@ -2,14 +2,21 @@ package net.bbstatstest.i265.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class TeamPk implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
+    @Column(name = "club_id")
     private Integer clubId;
 
+    @Column(name = "team_type_code")
     private String teamTypeCode;
 
+    @Column(name = "ordinal_nbr")
     private Integer ordinalNbr;
 
     public TeamPk()

@@ -2,34 +2,24 @@ package net.bbstatstest.i265.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "\"Teams\"")
-@IdClass(TeamPk.class)
 public class Team implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name = "club_id")
-    private Integer clubId;
+    @EmbeddedId
+    private TeamPk embeddedId;
 
-    @Id
-    @Column(name = "team_type_code")
-    private String teamTypeCode;
-
-    @Id
-    @Column(name = "ordinal_nbr")
-    private Integer ordinalNbr;
-
+    @MapsId("clubId")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "club_id", insertable = false, updatable = false)
     private Club club;
@@ -38,34 +28,44 @@ public class Team implements Serializable
     {
     }
 
+    public TeamPk getEmbeddedId()
+    {
+        return embeddedId;
+    }
+
+    public void setEmbeddedId(TeamPk embeddedId)
+    {
+        this.embeddedId = embeddedId;
+    }
+
     public Integer getClubId()
     {
-        return clubId;
+        return embeddedId.getClubId();
     }
 
     public void setClubId(Integer clubId)
     {
-        this.clubId = clubId;
+        embeddedId.setClubId(clubId);
     }
 
     public String getTeamTypeCode()
     {
-        return teamTypeCode;
+        return embeddedId.getTeamTypeCode();
     }
 
     public void setTeamTypeCode(String teamTypeCode)
     {
-        this.teamTypeCode = teamTypeCode;
+        embeddedId.setTeamTypeCode(teamTypeCode);
     }
 
     public Integer getOrdinalNbr()
     {
-        return ordinalNbr;
+        return embeddedId.getOrdinalNbr();
     }
 
     public void setOrdinalNbr(Integer ordinalNbr)
     {
-        this.ordinalNbr = ordinalNbr;
+        embeddedId.setOrdinalNbr(ordinalNbr);
     }
 
     public Club getClub()
@@ -83,9 +83,7 @@ public class Team implements Serializable
     {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ( (clubId == null) ? 0 : clubId.hashCode() );
-        result = prime * result + ( (ordinalNbr == null) ? 0 : ordinalNbr.hashCode() );
-        result = prime * result + ( (teamTypeCode == null) ? 0 : teamTypeCode.hashCode() );
+        result = prime * result + ( (embeddedId == null) ? 0 : embeddedId.hashCode() );
         return result;
     }
 
@@ -99,26 +97,12 @@ public class Team implements Serializable
         if ( getClass() != obj.getClass() )
             return false;
         Team other = ( Team ) obj;
-        if ( clubId == null )
+        if ( embeddedId == null )
         {
-            if ( other.clubId != null )
+            if ( other.embeddedId != null )
                 return false;
         }
-        else if ( !clubId.equals( other.clubId ) )
-            return false;
-        if ( ordinalNbr == null )
-        {
-            if ( other.ordinalNbr != null )
-                return false;
-        }
-        else if ( !ordinalNbr.equals( other.ordinalNbr ) )
-            return false;
-        if ( teamTypeCode == null )
-        {
-            if ( other.teamTypeCode != null )
-                return false;
-        }
-        else if ( !teamTypeCode.equals( other.teamTypeCode ) )
+        else if ( !embeddedId.equals( other.embeddedId ) )
             return false;
         return true;
     }
@@ -126,6 +110,6 @@ public class Team implements Serializable
     @Override
     public String toString()
     {
-        return "Team [clubId=" + clubId + ", teamTypeCode=" + teamTypeCode + ", ordinalNbr=" + ordinalNbr + "]";
+        return "Team [embeddedId=" + embeddedId + "]";
     }
 }
