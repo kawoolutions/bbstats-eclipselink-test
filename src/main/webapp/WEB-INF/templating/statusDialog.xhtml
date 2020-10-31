@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <!-- automatic execution of status dialog -->
+    <!--p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" /-->
+
+    <p:dialog id="status-dialog"
+              widgetVar="statusDialog"
+              modal="true"
+              draggable="false"
+              closable="false"
+              resizable="false"
+              showHeader="false">
+        
+        <p class="text-center">
+            <h:outputText value="#{text['common.statusDialog.message']}" />
+        </p>
+        
+        <h:graphicImage library="global-mixins" name="images/ajaxloadingbar.gif" />
+    
+    </p:dialog>
+
+</ui:composition>

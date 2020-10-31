@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <p:dialog id="locale-switcher-dialog"
+              widgetVar="localeSwitcherDialog"
+              header="#{text['common.action.changeLocale.header']}"
+              modal="true"
+              width="350"
+              height="100"
+              closable="true"
+              closeOnEscape="true"
+              resizable="false"
+              appendToBody="true">
+        
+        <h:form id="locale-switcher-form">
+        
+            <h:panelGrid columns="2" columnClasses="label," cellpadding="5">
+            
+                <p:outputLabel for="locale-switcher" value="#{text['common.locale.label']}:" />
+                <p:selectOneMenu id="locale-switcher"
+                                 value="#{localeSwitcher.selectedEntity}"
+                                 var="lcl"
+                                 converter="#{localeConverter}"
+                                 styleClass="width-150px">
+                        <f:selectItems value="#{localeSwitcher.entities}"
+                                       var="lcl"
+                                       itemValue="#{lcl}"
+                                       itemLabel="#{lcl.getDisplayLanguage(localeSwitcher.currentEntity)} (#{lcl})" />
+                        <p:column>
+                            <h:graphicImage library="bbstats"
+                                            name="images/icons/flags/#{lcl.country.toLowerCase(localeSwitcher.currentEntity)}.png"
+                                            styleClass="link-icon" />
+                            <h:outputText value="#{lcl.getDisplayLanguage(localeSwitcher.currentEntity)} (#{lcl})" />
+                        </p:column>
+                        <p:ajax process="@this"
+                                update="@this ok-button msgs" />
+                </p:selectOneMenu> 
+            </h:panelGrid>
+            
+            <h:panelGroup layout="block" styleClass="center-button-panel">
+                <p:commandButton id="ok-button"
+                                 icon="ui-icon ui-icon-check"
+                                 value="#{text['common.action.ok.label']}"
+                                 action="#{localeSwitcher.performChange()}"
+                                 process="@form"
+                                 update="@form"
+                                 oncomplete="PF('localeSwitcherDialog').hide(); location.reload( true );"
+                                 disabled="#{not localeSwitcher.changed}"
+                                 styleClass="width-150px" />
+                <p:commandButton icon="ui-icon ui-icon-close"
+                                 value="#{text['common.action.cancel.label']}"
+                                 oncomplete="PF('localeSwitcherDialog').hide();"
+                                 styleClass="width-150px" />
+            </h:panelGroup>
+        
+            <p:messages id="msgs" />
+            
+        </h:form>
+        
+    </p:dialog>
+    
+    <p:dialog id="theme-switcher-dialog"
+              widgetVar="themeSwitcherDialog"
+              header="#{text['common.action.changeTheme.header']}"
+              modal="true"
+              width="300"
+              height="100"
+              closable="true"
+              closeOnEscape="true"
+              resizable="false"
+              appendToBody="false">
+        
+        <h:form id="theme-switcher-form">
+        
+            <h:panelGrid columns="2" columnClasses="label," cellpadding="5">
+                
+                <p:outputLabel for="@next" value="#{text['common.theme.label']}:" />
+                <p:themeSwitcher id="theme-switcher"
+                                 value="#{themeSwitcher.selectedEntity}"
+                                 var="t"
+                                 effect="fade"
+                                 converter="#{themeConverter}"
+                                 style="width: 165px">
+                    <f:selectItem itemLabel="Choose Theme" itemValue="" />
+                    <f:selectItems value="#{themeSwitcher.entities}"
+                                   var="thm"
+                                   itemValue="#{thm}"
+                                   itemLabel="#{thm.displayName}" />
+                    <p:column>
+                        <h:outputText styleClass="ui-theme ui-theme-#{t.name}" style="display-block" />
+                    </p:column>
+                    <p:column>
+                        #{t.displayName}
+                    </p:column>
+                    <p:ajax listener="#{themeSwitcher.performChange()}"
+                            process="@this"
+                            update="@this :header" />
+                </p:themeSwitcher>
+                <!--p:outputLabel for="@next" value="SelectOneMenu:" />
+                <p:selectOneMenu id="theme-switcher-som"
+                                 value="#{themeSwitcher.selectedEntity}"
+                                 var="t"
+                                 converter="#{themeConverter}"
+                                 effect="fade"
+                                 style="width: 165px"-->
+                    <!--f:converter converterId="net.bbstats.converter.ThemeFacesConverter" /-->
+                    <!--f:selectItem itemLabel="Choose Theme" itemValue="" />
+                    <f:selectItems value="#{themeSwitcher.entities}"
+                                   var="thm"
+                                   itemValue="#{thm}"
+                                   itemLabel="#{thm.displayName}" />
+                    <p:column>
+                        <h:outputText styleClass="ui-theme ui-theme-#{t.name}" style="display-block" />
+                    </p:column>
+                    <p:column>
+                        #{t.displayName}
+                    </p:column>
+                    <p:ajax />
+                    <p:ajax listener="#{themeSwitcher.performChange()}"
+                            process="@this"
+                            update="@form :menu-right" />
+                </p:selectOneMenu-->
+            </h:panelGrid>
+        
+            <!--h:panelGroup id="note"
+                          layout="block"
+                          style="max-width: 300px;"-->
+                
+                <!--h:panelGrid columns="2" columnClasses="label," cellpadding="5">
+                    <p:outputLabel for="note-text" value="#{text['common.pleaseNote.label']}:" styleClass="text-nowrap" />
+                    <h:outputText id="note-text" value="#{text['themeSwitcher.dialog.changedMessage']}" />
+                </h:panelGrid-->
+                
+            <!--/h:panelGroup-->
+            
+            <h:panelGroup layout="block" styleClass="center-button-panel">
+                <p:commandButton id="ok-button"
+                                 icon="ui-icon ui-icon-check"
+                                 value="#{text['common.action.ok.label']}"
+                                 process="@this"
+                                 update="@form"
+                                 oncomplete="PF('themeSwitcherDialog').hide();"
+                                 styleClass="width-150px" />
+                <!--p:commandButton icon="ui-icon ui-icon-close"
+                                 value="#{text['common.action.cancel.label']}"
+                                 oncomplete="PF('themeSwitcherDialog').hide();"
+                                 styleClass="width-150px" /-->
+            </h:panelGroup>
+        
+            <p:messages id="msgs" />
+        
+        </h:form>
+        
+    </p:dialog>
+
+</ui:composition>

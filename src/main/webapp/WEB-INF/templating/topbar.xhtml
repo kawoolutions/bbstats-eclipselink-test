@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:of="http://omnifaces.org/functions"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <div id="topbar"
+         class="border-lim">
+        
+        <h:panelGroup id="logo-title-left"
+                      layout="block"
+                      styleClass="mb-10px ml-10px text-left float-left border-re">
+            
+            <h:link outcome="/home.xhtml"
+                    styleClass="company-logo float-left"
+                    style="margin-top: 12px; margin-left: 5px;">
+                <h:graphicImage library="bbstats"
+                                name="images/logo-mid-trans.png"
+                                width="132"
+                                height="42"
+                                style="" />
+            </h:link>
+            
+            <div class="float-left mt-15px ml-30px"
+                 style="color: #777;">
+                <h:outputText value="Basketball Stats"
+                              styleClass="project-title"
+                              style="font-size: 25px !important;" />
+                <h:outputText value="#{applicationStore.stage} [#{of:formatDate(applicationStore.releaseDateTime, text['common.dateTime.minuteFormat'])}]"
+                              title="#{text['common.releaseDate.label']}: #{of:formatDate(applicationStore.releaseDateTime, text['common.dateTime.minuteFormat'])}&#13;#{text['common.lastRestart.label']}: #{of:formatDate(facesContext.externalContext.context.getAttribute('restartDateTime'), text['common.dateTime.minuteFormat'])}"
+                              styleClass="display-inline-block ml-5px font-weight-500"
+                              style="font-size: 6px !important; vertical-align: 15px;" />
+            </div>
+            
+        </h:panelGroup>
+            
+        <h:panelGroup id="menu-right"
+                      layout="block"
+                      styleClass="mr-10px text-left float-right"
+                      style="">
+            
+            <h:form id="menu-right-form">
+                
+                <p:panel styleClass="mt-15px"
+                         style="clear: both; background: none; border: none;">
+                
+                    <!--p:commandLink action="#{authenticator.login}"
+                                   update="@none"
+                                   rendered="#{not sessionStore.loggedIn}"
+                                   styleClass="menu-link">
+                        <h:graphicImage library="bbstats"
+                                        name="images/icons/connect.png"
+                                        styleClass="link-icon"
+                                        style="vertical-align: -3px;" />
+                        <h:outputText value="Log in #{authenticator.userName}"
+                                      styleClass="display-inline-block ml-5px" />
+                    </p:commandLink-->
+                    <h:link outcome="/login.xhtml"
+                            rendered="#{not sessionStore.loggedIn}"
+                            styleClass="menu-link">
+                        <h:graphicImage library="bbstats"
+                                        name="images/icons/connect.png"
+                                        styleClass="link-icon"
+                                        style="vertical-align: -3px;" />
+                        <h:outputText value="#{text['common.login.label']}"
+                                      styleClass="display-inline-block ml-5px" />
+                    </h:link>
+                    <p:commandLink action="#{authenticator.logout}"
+                                   update="@none"
+                                   rendered="#{sessionStore.loggedIn}"
+                                   styleClass="menu-link">
+                        <h:graphicImage library="bbstats"
+                                        name="images/icons/disconnect.png"
+                                        styleClass="link-icon"
+                                        style="vertical-align: -3px;" />
+                        <h:outputText value="#{text['common.action.logout.label']} (#{sessionStore.userName})"
+                                      styleClass="display-inline-block ml-5px" />
+                    </p:commandLink>
+                    
+                    <p:commandLink id="locale-dialog-button"
+                                   update=":locale-switcher-form"
+                                   oncomplete="PF('localeSwitcherDialog').show();"
+                                   styleClass="menu-link">
+                        <f:setPropertyActionListener target="#{localeSwitcher.selectedEntity}" value="#{localeSwitcher.currentEntity}" />
+                        <h:graphicImage library="bbstats"
+                                        name="images/icons/flags/#{localeSwitcher.country.toLowerCase(localeSwitcher.currentEntity)}.png"
+                                        styleClass="link-flag-icon"
+                                        style="vertical-align: -1px;" />
+                        <h:outputText value="#{text['common.action.changeLocale.label']}"
+                                      styleClass="display-inline-block ml-5px" />
+                    </p:commandLink>
+                    
+                    <p:commandLink id="theme-dialog-button"
+                                   update=":theme-switcher-form"
+                                   oncomplete="PF('themeSwitcherDialog').show();"
+                                   styleClass="menu-link">
+                        <f:setPropertyActionListener target="#{themeSwitcher.selectedEntity}" value="#{themeSwitcher.currentEntity}" />
+                        <h:graphicImage library="bbstats"
+                                        name="images/icons/palette.png"
+                                        styleClass="link-icon" />
+                        <h:outputText value="#{text['common.action.changeTheme.label']}"
+                                      styleClass="display-inline-block ml-5px" />
+                    </p:commandLink>
+                    <!--STHM: #{themeSwitcher.selectedEntity.name}
+                    CTHM: #{themeSwitcher.currentEntity.name}-->
+                    <!--CLOC: #{localeSwitcher.currentEntity}
+                    FCTX: #{facesContext.viewRoot.locale}-->
+                    
+                </p:panel>
+                
+            </h:form>
+            
+        </h:panelGroup>
+    
+        <div class="clear-both" />
+    
+    </div>
+    
+</ui:composition>

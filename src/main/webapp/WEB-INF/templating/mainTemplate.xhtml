@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view encoding="UTF-8"
+            locale="#{localeSwitcher.currentEntity}">
+        
+        <ui:insert name="metadata" />
+        
+        <h:head>
+            <title>
+                <ui:insert name="title" />
+            </title>
+            
+            <ui:include src="/WEB-INF/templating/resources.xhtml" />
+            <ui:insert name="scripts" />
+        </h:head>
+        
+        <h:body>
+    
+            <ui:include src="/WEB-INF/templating/exceptionHandlers.xhtml" />
+            
+            <ui:include src="header.xhtml" />
+            
+            <div class="max-width-1440px ml-auto mr-auto pt-15px pb-15px">
+
+                <h:form id="test-form">
+                    
+                    <!--p:commandButton value="Throw ViewExpiredException!"
+                                     action="#{exceptionHandlerView.throwViewExpiredException}"
+                                     oncomplete="PF('annoyingExceptionDialog').show();" />
+                                     
+                    <p:commandButton value="Throw NullPointerException!"
+                                     action="#{exceptionHandlerView.throwNullPointerException}"
+                                     oncomplete="PF('annoyingExceptionDialog').show();" />
+                                     
+                    <p:commandButton value="Throw IllegalStateException!"
+                                     action="#{exceptionHandlerView.throwWrappedIllegalStateException}"
+                                     oncomplete="PF('annoyingExceptionDialog').show();" /-->
+                    <!-- ^^IllegalStateException is not handled using p:ajaxExceptionHandler's, so the error page is shown-->
+                    
+                </h:form>
+
+                <!--ui:include src="/WEB-INF/includes/okCancelDialog.xhtml">
+                    <ui:param name="dialogId" value="annoying-exception-dialog" />
+                    <ui:param name="dialogWv" value="annoyingExceptionDialog" />
+                    
+                    <ui:param name="useConfirmation" value="false" />
+                    
+                    <ui:param name="header" value="Annoying Dialog" />
+                    <ui:param name="width" value="800" />
+                    
+                    <ui:param name="referencedBean" value="#{groupHandler}" />
+                    <ui:param name="contentXhtml" value="" />
+                    <ui:param name="hideDialogOnOk" value="true" />
+                    
+                    <ui:param name="okIcon" value="fa-check" />
+                    <ui:param name="okLabel" value="Okeee" />
+                    <ui:param name="okAction" value="cancel" />
+                    <ui:param name="okDisabled" value="false" />
+                    
+                    <ui:param name="cancelIcon" value="fa-close" />
+                    <ui:param name="cancelLabel" value="Cancel" />
+                    <ui:param name="cancelAction" value="doNothing" />
+                    
+                    <ui:param name="closeAction" value="doNothing" />
+                    
+                    <ui:param name="updateIds" value="" />
+                    <ui:param name="resetIds" value="" />
+                </ui:include-->
+                
+                <!--p:link widgetVar="reloadPageButton"
+                        value="Reload page"
+                        outcome="#{view.viewId}?includeViewParams=true" /-->
+                
+                <div class="layout-main">
+                    <ui:insert name="content" />
+                    <!--div style="height: 800px;"></div-->
+                </div>
+            
+            </div>
+                
+            <ui:include src="footer.xhtml" />
+    
+            <!--div style="height: 300px;"></div-->
+                        
+            <ui:include src="/WEB-INF/templating/headerDialogs.xhtml" />
+            <ui:include src="/WEB-INF/templating/statusDialog.xhtml" />
+            <ui:include src="/WEB-INF/templating/preventUnloadDialog.xhtml" />
+            
+            <h:form id="exception-handler-dialog-form">
+                
+                <p:dialog id="exception-handler-dialog"
+                          widgetVar="exceptionHandlerDialog"
+                          header="Session Expired"
+                          modal="true"
+                          resizable="false"
+                          closable="true"
+                          closeOnEscape="true"
+                         nShow="sleep(3999); PF('reloadPageButton').jq.click();"
+                         Show="sleep(3999); alert('Yo man!');"
+                          styleClass="text-center"
+                          style="width: 300px !important; height: 200px !important;">
+            
+                    <p:ajax event="close"
+                            process="@this"
+                            update="#{updateIds}"
+                            onstart="PF('reloadPageButton').jq.click();"
+                            immediate="true" />
+                    
+                    <!--Message: #{pfExceptionHandler.message}<br/-->
+                    <!--StackTrace: <h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false" /-->
+                    
+                    <h:outputText value="Your session has expired." />
+                    <!--h:outputText value=" Reason: #{pfExceptionHandler.type}"
+                                  rendered="#{applicationStore.devStage}" /-->
+                    
+                    <p>
+                        <p:button widgetVar="reloadPageButton"
+                                  value="Reload page"
+                                  outcome="#{view.viewId}?includeViewParams=true" />
+                    </p>
+                    <!--p>
+                        <p:link widgetVar="reloadPageLink"
+                                value="Reload page"
+                                outcome="#{view.viewId}?includeViewParams=true" />
+                    </p-->
+                    <!--br />
+                    <p>
+                        <h:button widgetVar="reloadPageButtonJsf"
+                                  value="Reload page"
+                                  outcome="#{view.viewId}?includeViewParams=true" />
+                    </p>
+                    <p>
+                        <h:link widgetVar="reloadPageLinkJsf"
+                                value="Reload page"
+                                outcome="#{view.viewId}?includeViewParams=true" />
+                    </p-->
+                    
+                </p:dialog>
+                
+            </h:form>
+            
+        </h:body>
+        
+    </f:view>
+
+</html>
