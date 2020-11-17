@@ -12,27 +12,21 @@
     </ui:define>
 
     <ui:define name="title">
-        <h:outputText value="BBStats Index" />
+        <h:outputText value="Issue 286 Test" />
     </ui:define>
 
     <ui:define name="content">
         
         <h:form id="index-form">
             
-            <p:link href="/bbstats-eclipselink-test/i265/clubTeamView.xhtml"
-                    target="_blank"
-                    styleClass="">
-                Club Team @EmbeddedId read-only test
-            </p:link>
-            <br /><br />
+            #{contactAddressView.contact.id} has props:<br />
             
-            <p:link href="/bbstats-eclipselink-test/i286/contactAddressView.xhtml"
-                    target="_blank"
-                    styleClass="">
-                Contact Address @SecondaryTable discriptor test
-            </p:link>
-            <br /><br />
-            
+            CC: #{contactAddressView.contact.countryCode}:<br />
+            ZIP: #{contactAddressView.contact.zipCode}:<br />
+            CITY: #{contactAddressView.contact.cityName}:<br />
+            STREET: #{contactAddressView.contact.streetName}:<br />
+            HNBR: #{contactAddressView.contact.houseNbr}:<br />
+                
         </h:form>
 
     </ui:define>
