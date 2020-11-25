@@ -25,10 +25,13 @@ public class GameService
     {
         TypedQuery<Game> query = em.createNamedQuery( Game.FIND_ALL, Game.class );
         
+        // IAE: entity graph not found
 //        query.setHint( "javax.persistence.fetchgraph", Game.FETCH_SCORES );
         
         EntityGraph<Game> graph = em.createEntityGraph( Game.class );
         graph.addAttributeNodes( "scores" );
+        
+//        graph.addS
         
         query.setHint( "javax.persistence.fetchgraph" , graph );
         
