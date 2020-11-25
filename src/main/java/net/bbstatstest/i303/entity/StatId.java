@@ -3,7 +3,7 @@ package net.bbstatstest.i303.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ScoreId implements Serializable
+public class StatId implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -11,19 +11,25 @@ public class ScoreId implements Serializable
 
     private Boolean home;
 
-    public ScoreId()
+    private Integer playerId;
+
+    private Integer period;
+
+    public StatId()
     {
     }
 
-    public ScoreId(ScoreId s)
+    public StatId(StatId s)
     {
-        this(s.getGameId(), s.getHome());
+        this(s.getGameId(), s.getHome(), s.getPlayerId(), s.getPeriod());
     }
 
-    public ScoreId(Integer gameId, Boolean home)
+    public StatId(Integer gameId, Boolean home, Integer playerId, Integer period)
     {
         this.gameId = Objects.requireNonNull(gameId);
         this.home = Objects.requireNonNull(home);
+        this.playerId = Objects.requireNonNull(playerId);
+        this.period = Objects.requireNonNull(period);
     }
 
     public Integer getGameId()
@@ -46,6 +52,26 @@ public class ScoreId implements Serializable
         this.home = home;
     }
 
+    public Integer getPlayerId()
+    {
+        return playerId;
+    }
+
+    public void setPlayerId(Integer playerId)
+    {
+        this.playerId = playerId;
+    }
+
+    public Integer getPeriod()
+    {
+        return period;
+    }
+
+    public void setPeriod(Integer period)
+    {
+        this.period = period;
+    }
+
     @Override
     public int hashCode()
     {
@@ -53,6 +79,8 @@ public class ScoreId implements Serializable
         int result = 1;
         result = prime * result + ( (gameId == null) ? 0 : gameId.hashCode() );
         result = prime * result + ( (home == null) ? 0 : home.hashCode() );
+        result = prime * result + ( (period == null) ? 0 : period.hashCode() );
+        result = prime * result + ( (playerId == null) ? 0 : playerId.hashCode() );
         return result;
     }
 
@@ -65,7 +93,7 @@ public class ScoreId implements Serializable
             return false;
         if ( getClass() != obj.getClass() )
             return false;
-        ScoreId other = ( ScoreId ) obj;
+        StatId other = ( StatId ) obj;
         if ( gameId == null )
         {
             if ( other.gameId != null )
@@ -80,12 +108,26 @@ public class ScoreId implements Serializable
         }
         else if ( !home.equals( other.home ) )
             return false;
+        if ( period == null )
+        {
+            if ( other.period != null )
+                return false;
+        }
+        else if ( !period.equals( other.period ) )
+            return false;
+        if ( playerId == null )
+        {
+            if ( other.playerId != null )
+                return false;
+        }
+        else if ( !playerId.equals( other.playerId ) )
+            return false;
         return true;
     }
 
     @Override
     public String toString()
     {
-        return "[" + gameId + ", " + home + "]";
+        return "[" + gameId + ", " + home + ", " + playerId + ", " + period + "]";
     }
 }
