@@ -16,6 +16,7 @@
         <properties>
 
             <!-- EclipseLink properties -->
+            <property name="eclipselink.deploy-on-startup" value="true" />
             <!--property name="eclipselink.weaving" value="static" /-->
             <!--property name="eclipselink.weaving.internal" value="false" /-->
             
