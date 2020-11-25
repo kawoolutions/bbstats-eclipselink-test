@@ -25,23 +25,23 @@ public class Contact implements Serializable
     private Integer id;
 
     @Basic
-    @Column(name = "country_code", table = "\"Addresses\"")
+    @Column(name = "country_code", table = "Addresses")
     private String countryCode;
 
     @Basic
-    @Column(name = "zip_code", table = "\"Addresses\"")
+    @Column(name = "zip_code", table = "Addresses")
     private String zipCode;
 
     @Basic
-    @Column(name = "city_name", table = "\"Addresses\"")
+    @Column(name = "city_name", table = "Addresses")
     private String cityName;
 
     @Basic
-    @Column(name = "street_name", table = "\"Addresses\"")
+    @Column(name = "street_name", table = "Addresses")
     private String streetName;
 
     @Basic
-    @Column(name = "house_nbr", table = "\"Addresses\"")
+    @Column(name = "house_nbr", table = "Addresses")
     private String houseNbr;
 
     public Contact()
