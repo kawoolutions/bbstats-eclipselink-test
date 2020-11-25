@@ -25,6 +25,7 @@
             <property name="eclipselink.logging.logger" value="DefaultLogger" /-->
         
         </properties>
+        
     </persistence-unit>
 
 </persistence>
