@@ -3,7 +3,7 @@ package net.bbstatstest.i264.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ScoreId implements Serializable
+public class NestedIdScoreId implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -11,7 +11,7 @@ public class ScoreId implements Serializable
 
     private Boolean home;
 
-    public ScoreId()
+    public NestedIdScoreId()
     {
     }
 
@@ -48,7 +48,7 @@ public class ScoreId implements Serializable
             return false;
         }
 
-        ScoreId other = ( ScoreId ) obj;
+        NestedIdScoreId other = ( NestedIdScoreId ) obj;
 
         return Objects.equals(this.gameId, other.gameId) && Objects.equals(this.home, other.home);
     }
@@ -62,6 +62,6 @@ public class ScoreId implements Serializable
     @Override
     public String toString()
     {
-        return "ScoreId [gameId=" + Objects.toString(this.gameId) + ", home=" + Objects.toString(this.home) + "]";
+        return "NestedIdScoreId [gameId=" + Objects.toString(this.gameId) + ", home=" + Objects.toString(this.home) + "]";
     }
 }

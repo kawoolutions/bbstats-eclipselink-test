@@ -13,9 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Scores")
-@IdClass(ScoreId.class)
-public class Score implements Serializable
+@Table(name = "NestedIdScores")
+@IdClass(NestedIdScoreId.class)
+public class NestedIdScore implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -32,9 +32,9 @@ public class Score implements Serializable
     private Integer finalScore;
 
     @OneToMany(mappedBy = "score")
-    private List<PlayerStat> playerStats;
+    private List<NestedIdPlayerStat> playerStats;
 
-    public Score()
+    public NestedIdScore()
     {
     }
 
@@ -68,12 +68,12 @@ public class Score implements Serializable
         this.finalScore = finalScore;
     }
 
-    public List<PlayerStat> getPlayerStats()
+    public List<NestedIdPlayerStat> getPlayerStats()
     {
         return playerStats;
     }
 
-    public void setPlayerStats(List<PlayerStat> playerStats)
+    public void setPlayerStats(List<NestedIdPlayerStat> playerStats)
     {
         this.playerStats = playerStats;
     }
@@ -91,7 +91,7 @@ public class Score implements Serializable
             return false;
         }
 
-        Score other = ( Score ) obj;
+        NestedIdScore other = ( NestedIdScore ) obj;
 
         return Objects.equals(this.gameId, other.gameId) && Objects.equals(this.home, other.home);
     }
@@ -105,6 +105,6 @@ public class Score implements Serializable
     @Override
     public String toString()
     {
-        return "Score [gameId=" + Objects.toString(this.gameId) + ", home=" + Objects.toString(this.home) + ", finalScore=" + Objects.toString(this.finalScore) + "]";
+        return "NestedIdScore [gameId=" + Objects.toString(this.gameId) + ", home=" + Objects.toString(this.home) + ", finalScore=" + Objects.toString(this.finalScore) + "]";
     }
 }

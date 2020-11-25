@@ -1,17 +1,35 @@
 package net.bbstatstest.i264.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
-public class TeamMemberId implements Serializable
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "NestedIdTeamMembers")
+@IdClass(NestedIdTeamMemberId.class)
+public class NestedIdTeamMember implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @Column(name = "player_id")
     private Integer playerId;
 
+    @Id
+    @Column(name = "roster_id")
     private Integer rosterId;
 
-    public TeamMemberId()
+    @OneToMany(mappedBy = "teamMember")
+    private List<NestedIdPlayerStat> playerStats;
+
+    public NestedIdTeamMember()
     {
     }
 
@@ -35,6 +53,16 @@ public class TeamMemberId implements Serializable
         this.rosterId = rosterId;
     }
 
+    public List<NestedIdPlayerStat> getPlayerStats()
+    {
+        return playerStats;
+    }
+
+    public void setPlayerStats(List<NestedIdPlayerStat> playerStats)
+    {
+        this.playerStats = playerStats;
+    }
+
     @Override
     public boolean equals(Object obj)
     {
@@ -48,7 +76,7 @@ public class TeamMemberId implements Serializable
             return false;
         }
 
-        TeamMemberId other = ( TeamMemberId ) obj;
+        NestedIdTeamMember other = ( NestedIdTeamMember ) obj;
 
         return Objects.equals(this.playerId, other.playerId) && Objects.equals(this.rosterId, other.rosterId);
     }
@@ -62,6 +90,6 @@ public class TeamMemberId implements Serializable
     @Override
     public String toString()
     {
-        return "TeamMemberId [playerId=" + Objects.toString(this.playerId) + ", rosterId=" + Objects.toString(this.rosterId) + "]";
+        return "NestedIdTeamMember [playerId=" + Objects.toString(this.playerId) + ", rosterId=" + Objects.toString(this.rosterId) + "]";
     }
 }
