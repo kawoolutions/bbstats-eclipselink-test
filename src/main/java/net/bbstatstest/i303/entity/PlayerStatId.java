@@ -1,7 +1,6 @@
 package net.bbstatstest.i303.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class PlayerStatId implements Serializable
 {
@@ -15,18 +14,6 @@ public class PlayerStatId implements Serializable
 
     public PlayerStatId()
     {
-    }
-
-    public PlayerStatId(PlayerStatId p)
-    {
-        this(p.getGameId(), p.getHome(), p.getPlayerId());
-    }
-
-    public PlayerStatId(Integer gameId, Boolean home, Integer playerId)
-    {
-        this.gameId = Objects.requireNonNull(gameId);
-        this.home = Objects.requireNonNull(home);
-        this.playerId = Objects.requireNonNull(playerId);
     }
 
     public Integer getGameId()
@@ -102,11 +89,5 @@ public class PlayerStatId implements Serializable
         else if ( !playerId.equals( other.playerId ) )
             return false;
         return true;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "[" + gameId + ", " + home + ", " + playerId + "]";
     }
 }
